@@ -2,18 +2,27 @@
 
 An end-to-end machine learning and MLOps project for predicting machine failures from industrial sensor data.
 
-The project demonstrates the complete lifecycle of a machine learning model, from data preparation and model training to experiment tracking, model serving, containerization, automated testing, and continuous integration.
+The project demonstrates the complete lifecycle of a machine learning model, from data preparation and model training to experiment tracking, model registration, API deployment, containerization, automated testing, and continuous integration.
+
+![CI](https://github.com/RugayyaSadigzade25/predictive-maintenance-mlops/actions/workflows/ci.yml/badge.svg)
+
+---
 
 ## Tech Stack
 
-- Python
+- Python 3.11
 - pandas
+- NumPy
 - scikit-learn
 - MLflow
 - FastAPI
+- Pydantic
 - Docker
 - pytest
+- Git
 - GitHub Actions
+
+---
 
 ## Project Overview
 
@@ -40,31 +49,41 @@ The project then takes the trained model beyond the notebook environment and int
 6. Automated testing with pytest
 7. Continuous integration using GitHub Actions
 
+---
+
 ## Architecture
 
 ```text
-Industrial Sensor Data
-        |
-        v
-Data Preparation
-        |
-        v
-Machine Learning Model
-        |
-        v
-MLflow Tracking
-        |
-        v
-MLflow Model Registry
-        |
-        v
-FastAPI Prediction API
-        |
-        v
-Docker Container
-        |
-        v
-Automated Tests
-        |
-        v
-GitHub Actions CI
+                    ┌─────────────────────┐
+                    │  Industrial Data    │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Data Preparation &  │
+                    │ Model Training      │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │       MLflow        │
+                    │ Tracking + Registry │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │    FastAPI API      │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   Docker Container  │
+                    └─────────────────────┘
+
+
+        ┌──────────────────────────────────────────┐
+        │        Development / Quality Layer       │
+        │                                          │
+        │     pytest  ───────►  GitHub Actions     │
+        │                           CI             │
+        └──────────────────────────────────────────┘
