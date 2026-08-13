@@ -1,12 +1,17 @@
 # Python
 __pycache__/
 *.py[cod]
-.pytest_cache/
+*.pyo
 
 # Virtual environments
 .venv/
 venv/
 env/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
 
 # Jupyter
 .ipynb_checkpoints/
@@ -15,12 +20,20 @@ env/
 mlflow.db
 mlruns/
 
+# Monitoring logs
+logs/
+*.log
+
+# Generated production data
+data/production_data.csv
+
 # OS
 .DS_Store
 Thumbs.db
 
 # IDE
 .vscode/
+.idea/
 
 # Secrets
 .env
