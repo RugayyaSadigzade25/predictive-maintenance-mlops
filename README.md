@@ -131,12 +131,13 @@ The API documentation is available at:
 http://127.0.0.1:8000/docs
 
 
-Production Monitoring
+## Production Monitoring
 
 The system monitors incoming production data and compares it against the reference data distribution.
 
 The monitoring pipeline is:
 
+```text
 Production Data
       ↓
 Data Validation
@@ -150,7 +151,9 @@ Monitoring Window
 Drift Detection
       ↓
 Monitoring Logs
-Data Drift Detection
+```
+
+## Data Drift Detection
 
 Drift detection is performed using the Kolmogorov–Smirnov (KS) test.
 
@@ -158,31 +161,35 @@ The system compares reference data with newly collected production data and eval
 
 Detected drift results are recorded by the monitoring logger.
 
-Testing
+## Testing
 
 The project includes automated tests covering:
 
-FastAPI prediction endpoints
-Input data validation
-Drift detection
-Monitoring logic
-Monitoring integration
-Monitoring logging
-Production monitoring
+- FastAPI prediction endpoints
+- Input data validation
+- Drift detection
+- Monitoring logic
+- Monitoring integration
+- Monitoring logging
+- Production monitoring
 
 The current test suite contains 14 tests, all passing successfully.
 
+```text
 14 passed
+```
 
 Run the tests with:
 
 python -m pytest
-Continuous Integration
+
+## Continuous Integration
 
 GitHub Actions automatically runs the test suite when changes are pushed to the main branch or when a pull request is opened.
 
 The CI workflow is:
 
+```text
 Git Push / Pull Request
         ↓
 GitHub Actions
@@ -194,7 +201,11 @@ Install Dependencies
 Run Pytest
         ↓
 Pass / Fail
-Project Structure
+```
+
+## Project Structure
+
+```text
 predictive-maintenance-mlops/
 
 │
@@ -235,44 +246,57 @@ predictive-maintenance-mlops/
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
-Quick Start
+```
+
+## Quick Start
 
 Clone the repository:
 
+```bash
 git clone https://github.com/RugayyaSadigzade25/predictive-maintenance-mlops.git
 cd predictive-maintenance-mlops
+```
 
 Install dependencies:
 
+```bash
 pip install -r requirements.txt
-
+```
 Run tests:
 
+```bash
 python -m pytest
+```
 
 Start the API:
 
+```bash
 uvicorn src.predict:app --reload
+```
 
 Open:
 
 http://127.0.0.1:8000/docs
-Technologies
-Python
-pandas
-NumPy
-scikit-learn
-MLflow
-FastAPI
-Pydantic
-Docker
-pytest
-GitHub Actions
-Future Improvements
-Automated model retraining after significant data drift
-Model performance monitoring in production
-Hyperparameter optimization
-Scheduled retraining pipelines
-Prometheus/Grafana observability
-Cloud deployment
-Automated Docker image publishing through CI/CD
+
+## Technologies
+
+- Python
+- pandas
+- NumPy
+- scikit-learn
+- MLflow
+- FastAPI
+- Pydantic
+- Docker
+- pytest
+- GitHub Actions
+
+## Future Improvements
+
+- Automated model retraining after significant data drift
+- Model performance monitoring in production
+- Hyperparameter optimization
+- Scheduled retraining pipelines
+- Prometheus/Grafana observability
+- Cloud deployment
+- Automated Docker image publishing through CI/CD
