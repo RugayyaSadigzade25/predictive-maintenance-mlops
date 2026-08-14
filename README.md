@@ -48,31 +48,27 @@ The system includes:
 
 The project uses the **AI4I 2020 Predictive Maintenance Dataset**, which contains industrial machine measurements and machine failure labels.
 
-The model uses the following features:
+The model uses:
 
-| Feature | Description |
-|---|---|
-| Type | Machine type |
-| Air temperature [K] | Air temperature |
-| Process temperature [K] | Process temperature |
-| Rotational speed [rpm] | Machine rotational speed |
-| Torque [Nm] | Applied torque |
-| Tool wear [min] | Tool usage time |
+- Type
+- Air temperature [K]
+- Process temperature [K]
+- Rotational speed [rpm]
+- Torque [Nm]
+- Tool wear [min]
 
 The target variable is:
 
-- `Machine failure = 0` — No failure
-- `Machine failure = 1` — Machine failure
+- `0` — No machine failure
+- `1` — Machine failure
 
 ## Machine Learning Model
 
 A **Random Forest classifier** is used to predict machine failure.
 
-The training pipeline performs preprocessing of categorical and numerical features before training the model. The complete trained pipeline is saved using `joblib` and loaded by the FastAPI application for production inference.
+The training pipeline preprocesses categorical and numerical features before training. The complete trained pipeline is saved using `joblib` and loaded by the FastAPI application for inference.
 
 ### Model Performance
-
-The final Random Forest model achieved:
 
 | Metric | Score |
 |---|---:|
@@ -81,30 +77,11 @@ The final Random Forest model achieved:
 | Recall | 66.18% |
 | F1-score | 68.70% |
 
-The lower recall for the failure class is particularly important in predictive maintenance because failing to identify an actual machine failure can be more costly than generating a false alarm.
+The failure-class recall is particularly important because missing an actual machine failure can be more costly than generating a false alarm.
 
 ## Experiment Tracking
 
-MLflow is used to track machine learning experiments and model performance.
-
-Training runs record metrics and parameters including:
-
-- Accuracy
-- Precision
-- Recall
-- F1-score
-- Model type
-- Number of estimators
-- Class weighting
-- Random state
-
-The project also uses the MLflow Model Registry to manage trained model versions.
-
-This provides a reproducible record of model development and makes it possible to compare different training runs.
-
-### MLflow Experiment Tracking
-
-The Random Forest training run is tracked in MLflow together with its parameters and evaluation metrics.
+MLflow is used to track training experiments, parameters, and evaluation metrics.
 
 ![MLflow Experiment Tracking](docs/image.png)
 
@@ -115,14 +92,12 @@ The trained model is served through a **FastAPI REST API**.
 The API:
 
 1. Receives machine sensor measurements
-2. Validates the incoming data
-3. Runs the trained machine learning model
+2. Validates the input
+3. Runs the trained model
 4. Returns the predicted machine failure status
-5. Reports the current production data drift status
+5. Reports the current drift status
 
 ### API Documentation
-
-FastAPI provides interactive Swagger documentation for testing the available endpoints.
 
 ![FastAPI API Documentation](docs/overv.png)
 
@@ -130,19 +105,13 @@ FastAPI provides interactive Swagger documentation for testing the available end
 
 The `/predict` endpoint accepts machine sensor measurements and returns the model prediction.
 
-![FastAPI Prediction Request](docs/api.png.png)
+![Prediction Request](docs/api.png.png)
 
-![FastAPI Prediction Response](docs/api2.png.png)
+![Prediction Response](docs/api2.png.png)
 
 ## Docker
 
 The application is containerized with Docker to provide a reproducible environment for running the FastAPI inference service.
-
-The Docker image packages the Python dependencies, trained model, application code, and API server into a single deployable unit.
-
-### Running the Application
-
-The container exposes port `8000` and runs the FastAPI application using Uvicorn.
 
 ![Docker Container Running](docs/docker.png)
 
@@ -150,19 +119,20 @@ Build the Docker image:
 
 ```bash
 docker build -t predictive-maintenance-mlops .
+```
 
 Run the container:
 
+```bash
 docker run -p 8000:8000 predictive-maintenance-mlops
+```
 
 The API documentation is available at:
-
 http://127.0.0.1:8000/docs
+
 Production Monitoring
 
 The system monitors incoming production data and compares it against the reference data distribution.
-
-Production observations are collected in a monitoring window before statistical drift analysis is performed.
 
 The monitoring pipeline is:
 
@@ -187,13 +157,9 @@ The system compares reference data with newly collected production data and eval
 
 Detected drift results are recorded by the monitoring logger.
 
-This allows changes in production input data to be identified after deployment.
-
 Testing
 
-The project includes automated tests covering the main components of the ML system.
-
-Tests cover:
+The project includes automated tests covering:
 
 FastAPI prediction endpoints
 Input data validation
@@ -227,9 +193,6 @@ Install Dependencies
 Run Pytest
         ↓
 Pass / Fail
-
-This helps ensure that changes to the project do not break existing functionality.
-
 Project Structure
 predictive-maintenance-mlops/
 │
@@ -238,7 +201,6 @@ predictive-maintenance-mlops/
 │       └── ci.yml
 │
 ├── data/
-│
 ├── docs/
 │   ├── Gemini_Generated_Image_jfcqlbjfcqlbjfcq.png
 │   ├── image.png
@@ -272,22 +234,27 @@ predictive-maintenance-mlops/
 ├── requirements.txt
 └── README.md
 Quick Start
-Clone the Repository
+
+Clone the repository:
+
 git clone https://github.com/RugayyaSadigzade25/predictive-maintenance-mlops.git
 cd predictive-maintenance-mlops
-Install Dependencies
+
+Install dependencies:
+
 pip install -r requirements.txt
-Run Tests
+
+Run tests:
+
 python -m pytest
-Start the API
+
+Start the API:
+
 uvicorn src.predict:app --reload
 
 Open:
 
 http://127.0.0.1:8000/docs
-Run with Docker
-docker build -t predictive-maintenance-mlops .
-docker run -p 8000:8000 predictive-maintenance-mlops
 Technologies
 Python
 pandas
@@ -308,3 +275,14 @@ Prometheus/Grafana observability
 Cloud deployment
 Automated Docker image publishing through CI/CD
 
+
+### Then do exactly these 3 commands
+
+
+In your terminal, inside the project folder:
+
+
+```bash
+git add README.md
+git commit -m "Fix README formatting and documentation"
+git push
