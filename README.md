@@ -131,7 +131,7 @@ The API documentation is available at:
 http://127.0.0.1:8000/docs
 
 
-## Production Monitoring
+### Production Monitoring
 
 The system monitors incoming production data and compares it against the reference data distribution.
 
@@ -153,7 +153,7 @@ Drift Detection
 Monitoring Logs
 ```
 
-## Data Drift Detection
+### Data Drift Detection
 
 Drift detection is performed using the Kolmogorov–Smirnov (KS) test.
 
@@ -161,7 +161,7 @@ The system compares reference data with newly collected production data and eval
 
 Detected drift results are recorded by the monitoring logger.
 
-## Testing
+### Testing
 
 The project includes automated tests covering:
 
@@ -183,7 +183,7 @@ Run the tests with:
 
 python -m pytest
 
-## Continuous Integration
+### Continuous Integration
 
 GitHub Actions automatically runs the test suite when changes are pushed to the main branch or when a pull request is opened.
 
@@ -203,7 +203,7 @@ Run Pytest
 Pass / Fail
 ```
 
-## Project Structure
+### Project Structure
 
 ```text
 predictive-maintenance-mlops/
@@ -248,7 +248,7 @@ predictive-maintenance-mlops/
 └── README.md
 ```
 
-## Quick Start
+### Quick Start
 
 Clone the repository:
 
@@ -278,7 +278,7 @@ Open:
 
 http://127.0.0.1:8000/docs
 
-## Technologies
+### Technologies
 
 - Python
 - pandas
@@ -291,7 +291,7 @@ http://127.0.0.1:8000/docs
 - pytest
 - GitHub Actions
 
-## Future Improvements
+### Future Improvements
 
 - Automated model retraining after significant data drift
 - Model performance monitoring in production
