@@ -105,9 +105,9 @@ The API:
 
 The `/predict` endpoint accepts machine sensor measurements and returns the model prediction.
 
-![Prediction Request](docs/api.png.png)
+![Prediction Request](docs/api.png)
 
-![Prediction Response](docs/api2.png.png)
+![Prediction Response](docs/api2.png)
 
 ## Docker
 
@@ -129,6 +129,7 @@ docker run -p 8000:8000 predictive-maintenance-mlops
 
 The API documentation is available at:
 http://127.0.0.1:8000/docs
+
 
 Production Monitoring
 
@@ -195,6 +196,7 @@ Run Pytest
 Pass / Fail
 Project Structure
 predictive-maintenance-mlops/
+
 │
 ├── .github/
 │   └── workflows/
@@ -274,15 +276,3 @@ Scheduled retraining pipelines
 Prometheus/Grafana observability
 Cloud deployment
 Automated Docker image publishing through CI/CD
-
-
-### Then do exactly these 3 commands
-
-
-In your terminal, inside the project folder:
-
-
-```bash
-git add README.md
-git commit -m "Fix README formatting and documentation"
-git push
